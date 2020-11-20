@@ -1,12 +1,7 @@
 <script id="pelaaja-joukkue" type="text/x-handlebars-template"></script>
-<script>  
-    function formatJson(value) {
-      return JSON.stringify(value);
-    }
-</script>
 <body>
   <ol style="list-style: none;">
-    {{#each joukkueet}}
+    {{#each joukkueet}} <!-- joka joukkueelle ja pelaajalle tehdään handlebar käsittely listaksi -->
       <li>
         {{#each this}}
           {{this}}

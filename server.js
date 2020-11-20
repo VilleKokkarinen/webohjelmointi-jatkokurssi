@@ -25,17 +25,16 @@ app.use(
     })
 );
 
-// parse requests of content-type: application/json
+// parsettaa json pyynnöt
 app.use(bodyParser.json());
 
-// parse requests of content-type: application/x-www-form-urlencoded
+// parsettaa muut pyynnöt
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-//Sets our app to use the handlebars engine
+// appi käyttää handlebar moottoria
 app.set('view engine', 'handlebars');
 
-//Sets handlebars configurations (we will go through them later on)
 app.engine('handlebars', Handlebars({
 layoutsDir: __dirname + '/views/layouts',
 }));
@@ -81,15 +80,16 @@ app.get("/", (req, res) => {
         }
     ]
 
+    //renderöi aloitussivun, aloitustiedoilla
     res.render('football', { layout: 'index', options: alasvetovalikko, tapahtumat: seurTapaht });
 });
 
+//requiraa nuo restin pyynnöt
 require("./app/routes/pelaaja.routes.js")(app);
 require("./app/routes/joukkue.routes.js")(app);
 require("./app/routes/sarjataulu.routes.js")(app);
 
-
-// set port, listen for requests
+// kuuntelee porttia
 app.listen(defaultPort, () => {
   console.log(`Server is running on port ${defaultPort}`);
 });

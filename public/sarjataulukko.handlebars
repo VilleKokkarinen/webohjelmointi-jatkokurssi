@@ -17,13 +17,13 @@
  <table class="tbl">
   <thead>
     <tr>
-      {{#each array.[0]}}
+      {{#each array.[0]}} } <!-- otetaan ensimmäinen objekti arraysta ja napataan siitä avaimet otsikkoon -->
         <th class="h">{{@key}}</th>
       {{/each}}
     </tr>
   </thead>
   <tbody>
-    {{#each array}}
+    {{#each array}} <!-- kaikille arrayn tavaroille tehdään taulukkoon sijoitus -->
       <tr>
         {{#each this}}
           <td class="d">{{this}}</td>

@@ -27,10 +27,12 @@ käy vaihtamassa portti jos käytät toista.
 - server.js
 - views/football.handlebars
 
+
 12. 
 - server.js
 - app
-- /public 
+- /public
+
 
 13. 
 - views/football.handlebars 

@@ -1,4 +1,4 @@
-var templates = {};
+var templates = {}; // samat kommentit pelaaja-joukkue-haku.js tiedostossa
  
 function display_template(tmpl, data) { 
   console.log(data)

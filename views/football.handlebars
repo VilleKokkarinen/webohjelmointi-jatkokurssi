@@ -42,12 +42,12 @@ header, footer, article, aside, div {
             Tervetuloa Jalkapallo-sivulle
         </td>
         <td>
-            <select>
-                <option>Valitse toiminto</option>
-                {{#each options}}
+          <select>
+              <option>Valitse toiminto</option> <!-- tämän nyt ei tarvitsisi edes olla valittavissa -->
+              {{#each options}}<!-- luo jokaiselle optionille oman valinnan -->
                 <option> {{text}}</option>
-                {{/each}}              
-              </select>
+              {{/each}}              
+            </select>
         </td>
       </tr> 
     </table>
@@ -59,14 +59,14 @@ header, footer, article, aside, div {
   </article>
   <aside id="mainNav">
     <ul style="list-style: none;">
-        <li><a href="" class="view-sarjataulukko">Sarjataulukko</a></li>
+        <li><a href="" class="view-sarjataulukko">Sarjataulukko</a></li> <!-- linkit mitkä avaa nuo listat näkyviin -->
         <li><a href="" class="view-pelaaja-joukkue">Pelaajat ja joukkueet</a></li>
     </ul>
   </aside>
   <div id="siteAds">
     <p>Seuraava tapahtumat</p>
     <ul style="list-style: none;">
-        {{#each tapahtumat}}
+        {{#each tapahtumat}} <!-- luo jokaiselle tapahtumalle li elementin -->
          <li> {{date}} {{text}} </li>
         {{/each}}
     </ul>
