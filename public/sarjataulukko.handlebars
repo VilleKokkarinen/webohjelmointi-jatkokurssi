@@ -1,0 +1,36 @@
+<style>
+.tbl {
+  width: 100%;
+}
+
+.tbl, .h, .d {
+  border: 1px solid lightgrey;
+  border-collapse: collapse;
+}
+
+.h, .d {
+  padding: 2px 4px;
+}
+</style>
+<script id="sarjaTaulu" type="text/x-handlebars-template"></script>
+<body>
+ <table class="tbl">
+  <thead>
+    <tr>
+      {{#each array.[0]}}
+        <th class="h">{{@key}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    {{#each array}}
+      <tr>
+        {{#each this}}
+          <td class="d">{{this}}</td>
+        {{/each}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+</body>
+</script>
