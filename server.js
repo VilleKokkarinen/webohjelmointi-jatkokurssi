@@ -1,4 +1,10 @@
 
+const { v4: uuidv4 } = require('uuid');
+const session = require('express-session')
+const FileStore = require('session-file-store')(session);
+
+
+
 const express = require("express");
 const Handlebars = require("express-handlebars");
 const bodyParser = require("body-parser");
@@ -31,6 +37,17 @@ app.use(bodyParser.json());
 // parsettaa muut pyynnöt
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({
+    genid: (req) => {
+      console.log(req.sessionID)
+      return uuidv4() // use UUIDs for session IDs
+    },
+    store: new FileStore(),
+    secret: 'secretti',
+    resave: false,
+    saveUninitialized: true
+  }))
+
 
 // appi käyttää handlebar moottoria
 app.set('view engine', 'handlebars');
@@ -42,53 +59,25 @@ layoutsDir: __dirname + '/views/layouts',
 app.use(express.static('./public'))
 
 app.get("/", (req, res) => {
-
-    const alasvetovalikko = [ //mieluusti hakisi jostain eikä kovakoodattu :)
-        {
-            text:'eka',
-        },
-        {
-            text:'toka',
-        },
-        {
-            text:'kolmas',
-        },
-        {
-            text:'neljäs',
-        },
-        {
-            text:'viides',
-        }
-    ]
-
-    const seurTapaht= [
-        {
-            date: '28.10.2018',
-            text: 'Suomi-Unkari miesten maaottelu'
-        },
-        {
-            date: '01.11.2018',
-            text: 'Futsal turnaus Kuopiossa'
-        },
-        {
-            date: '12.11.2018 ',
-            text: 'Kauden päättäjäiset Keskuskentällä'
-        },
-        {
-            date: '28.11.2018',
-            text: 'Pikkujoulut'
-        }
-    ]
-
-    //renderöi aloitussivun, aloitustiedoilla
-    res.render('football', { layout: 'index', options: alasvetovalikko, tapahtumat: seurTapaht });
+    res.render('football', { layout: 'index', });
 });
 
-//requiraa nuo restin pyynnöt
-require("./app/routes/pelaaja.routes.js")(app);
-require("./app/routes/joukkue.routes.js")(app);
-require("./app/routes/sarjataulu.routes.js")(app);
+app.get('/login', (req, res) => { // luo keksin
+    console.log(req.sessionID)
+    res.redirect('/')
+  })
+  
+app.post('/login', (req, res, next) => {
+    req.login(user, (err) => {
+    return res.send('session keksi luotu');
+    })
+(req, res, next);
+})
 
+app.get('/logout', (req, res) => {
+    res.clearCookie('sessionID')
+    return res.send('session keksi poistettu')
+})
 // kuuntelee porttia
 app.listen(defaultPort, () => {
   console.log(`Server is running on port ${defaultPort}`);

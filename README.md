@@ -10,7 +10,12 @@ komentorivi -> npm i pääkansiossa
 
 2. käynnistä resti -> komentorivi -> node server.js -> aukeaa porttiin 3000
 
--> avaa selaimessa localhost:3000
+-> avaa selaimessa localhost:3000/login
+-> luo sessiokeksin ja redirectaa takaisin alkuun
+
+
+
+localhost:3000/logout / tai / nappia painamalla poistaa keksin
 
 ```
 käy vaihtamassa portti jos käytät toista.
@@ -23,17 +28,7 @@ käy vaihtamassa portti jos käytät toista.
 
 #### tehtävät ja niiden koodit
 
-11. 
-- server.js
-- views/football.handlebars
+14. server.js
 
-
-12. 
-- server.js
-- app
-- /public
-
-
-13. 
-- views/football.handlebars 
-- /public
+15. server.js 
+public/logout.js

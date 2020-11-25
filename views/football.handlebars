@@ -42,12 +42,9 @@ header, footer, article, aside, div {
             Tervetuloa Jalkapallo-sivulle
         </td>
         <td>
-          <select>
-              <option>Valitse toiminto</option> <!-- tämän nyt ei tarvitsisi edes olla valittavissa -->
-              {{#each options}}<!-- luo jokaiselle optionille oman valinnan -->
-                <option> {{text}}</option>
-              {{/each}}              
-            </select>
+          <Button id="LogOut">               
+            Kirjaudu Ulos
+          </Button>
         </td>
       </tr> 
     </table>
@@ -66,9 +63,6 @@ header, footer, article, aside, div {
   <div id="siteAds">
     <p>Seuraava tapahtumat</p>
     <ul style="list-style: none;">
-        {{#each tapahtumat}} <!-- luo jokaiselle tapahtumalle li elementin -->
-         <li> {{date}} {{text}} </li>
-        {{/each}}
     </ul>
   </div>
   <footer id="pageFooter">
