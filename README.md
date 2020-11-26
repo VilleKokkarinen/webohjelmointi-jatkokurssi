@@ -10,12 +10,8 @@ komentorivi -> npm i pääkansiossa
 
 2. käynnistä resti -> komentorivi -> node server.js -> aukeaa porttiin 3000
 
--> avaa selaimessa localhost:3000/login
--> luo sessiokeksin ja redirectaa takaisin alkuun
-
-
-
-localhost:3000/logout / tai / nappia painamalla poistaa keksin
+-> avaa selaimessa localhost:3000
+-> luo sessiokeksin ja kirjaa käyttäjän sisään.
 
 ```
 käy vaihtamassa portti jos käytät toista.
@@ -32,6 +28,8 @@ käy vaihtamassa portti jos käytät toista.
 public/logout-login.js
 
 /sessions/ <- keksit/sessiot luodaan ja poistetaan tuolta
+
+
 
 15. server.js 
 public/logout.js
