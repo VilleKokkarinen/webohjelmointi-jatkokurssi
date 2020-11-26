@@ -39,15 +39,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
     genid: (req) => {
-      console.log(req.sessionID)
       return uuidv4() // use UUIDs for session IDs
     },
     store: new FileStore(),
     secret: 'secretti',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    cookie: { maxAge: 3600000,secure: false, httpOnly: true }
   }))
-
 
 // appi käyttää handlebar moottoria
 app.set('view engine', 'handlebars');
@@ -59,24 +58,32 @@ layoutsDir: __dirname + '/views/layouts',
 app.use(express.static('./public'))
 
 app.get("/", (req, res) => {
-    res.render('football', { layout: 'index', });
+
+    var session = req.session; // nykyinen sessio
+
+    if (session.LOGGEDIN == true) { // jos käyttäjä oli jo kirjautunut sisään
+        console.log('käyttäjä on kirjautunut sisään')
+        res.render('football', { layout: 'index' });
+      }
+    else {
+        console.log('käyttäjä ei ole kirjautunut sisään, kirjaudutaan sisään')
+        session.LOGGEDIN = true; // "kirjaudutaan sisään" automaattisesti, jos ei ole
+        res.redirect('/')
+    }
 });
 
-app.get('/login', (req, res) => { // luo keksin
-    console.log(req.sessionID)
-    res.redirect('/')
+app.get('/login', (req, res) => {
+    console.log('käyttäjä kirjautuu sisään: ', req.sessionID)
+    var session = req.session;
+    session.LOGGEDIN = true;
+    return res.send('kirjauduttu sisään');
   })
-  
-app.post('/login', (req, res, next) => {
-    req.login(user, (err) => {
-    return res.send('session keksi luotu');
-    })
-(req, res, next);
-})
 
 app.get('/logout', (req, res) => {
-    res.clearCookie('sessionID')
-    return res.send('session keksi poistettu')
+    console.log('käyttäjä kirjautuu ulos', req.sessionID)
+    var session = req.session;
+    session.LOGGEDIN = false;
+    return res.send('kirjauduttu ulos');
 })
 // kuuntelee porttia
 app.listen(defaultPort, () => {
