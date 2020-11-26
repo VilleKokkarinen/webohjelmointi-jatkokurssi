@@ -1,6 +1,6 @@
 ### 1.0 ajaminen
 
-##### ( tehtävät 11,12,13 )
+##### ( tehtävät 14,15,16,17 )
 
 1. asenna node moduulipaketit
 
@@ -30,6 +30,10 @@ public/logout-login.js
 /sessions/ <- keksit/sessiot luodaan ja poistetaan tuolta
 
 
-
 15. server.js 
 public/logout.js
+
+
+16. public/test.js
+
+17.  public/test.js
