@@ -28,12 +28,13 @@ käy vaihtamassa portti jos käytät toista.
 
 public/logout-login.js
 
-/sessions/ <- keksit/sessiot luodaan ja poistetaan tuolta
+/sessions/ <- keksit/sessiot
 
+---
 
 15. server.js 
 
-public/logout.js
+public/logout-login.js
 
 ---
 
